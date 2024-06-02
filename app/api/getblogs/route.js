@@ -8,7 +8,7 @@ export async function GET(req) {
   try {
     let querySnapshot = await getDocs(collection(db, "blogs"));
     // blogs = querySnapshot;
-    console.log(blogs);
+    // console.log(blogs);
     blogs = querySnapshot.docs.map((doc) => {
       return { ...doc.data(), id: doc.id };
     });
@@ -23,7 +23,7 @@ export async function GET(req) {
 }
 export async function POST(req, res) {
   const data = await req.json();
-  console.log(data);
+  // console.log(data);
   // Add a new document with a generated id.
   try {
     const docRef = await addDoc(collection(db, "blogs"), {

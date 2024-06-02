@@ -4,6 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { useRouter } from "next/navigation";
+import { revalidatePath } from "next/cache";
 
 const CreateBlogForm = () => {
   const [formData, setFormData] = useState({
@@ -29,7 +30,7 @@ const CreateBlogForm = () => {
         body: JSON.stringify(formData),
       });
 
-      console.log("Response Status:", response.status);
+      // console.log("Response Status:", response.status);
 
       if (!response.ok) {
         console.error("Network response was not ok");
@@ -37,14 +38,14 @@ const CreateBlogForm = () => {
       }
 
       const data = await response.json();
-      console.log("Response Data:", data);
+      // console.log("Response Data:", data);
 
       setFormData({
         title: "",
         content: "",
       });
-
       router.push("/blogs");
+      revalidatePath("/blogs");
     } catch (error) {
       console.error("Error submitting form:", error);
     }

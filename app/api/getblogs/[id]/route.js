@@ -3,7 +3,7 @@ import { doc, getDoc } from "firebase/firestore";
 
 export async function GET(req, { params }) {
   //   const { id } = req.query;
-  console.log(params);
+  // console.log(params);
   try {
     const docRef = doc(db, "blogs", params.id);
     const docSnap = await getDoc(docRef);
